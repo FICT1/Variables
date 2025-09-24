@@ -9,7 +9,7 @@ namespace Variables.Modelos
 
         public String MostrarDatos()
         {
-            return "Facultad" + Nombre + ",Codigo: " + Codigo;
+            return " Facultad: " + Nombre + " Codigo: " + Codigo;
 
         }
 
