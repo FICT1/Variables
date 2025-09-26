@@ -5,6 +5,11 @@ namespace Variables
 {
     public partial class FrmLogin : Form
     {
+        int attempts = 0; 
+
+
+
+
         public FrmLogin()
         {
             InitializeComponent();
@@ -27,16 +32,39 @@ namespace Variables
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+
             if (Login(tbUser.Text, tbPassword.Text))
-                {
-                new Form1().Show();
-                this.Hide();
+            {
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+                //new FrmPrincipal().Show();
+                //this.Hide();
+            }
+
+            else
+            {
+                attempts++;
+                MessageBox.Show("Contra invalida");
+
+            }
+            
+            if (attempts == 3)
+            {
+              
+             MessageBox.Show("Has superado el número de intentos permitidos.", "Error", MessageBoxButtons.OK);
+             this.Close();
+                
             }
         }
 
         private Boolean Login (string username, string password)
         {
             return username.Equals("admin") && password.Equals("admin");
+        }
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
